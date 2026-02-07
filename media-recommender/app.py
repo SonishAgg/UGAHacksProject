@@ -71,7 +71,7 @@ if st.button("🔍 Get Recommendations"):
     results = []
     for i, item in enumerate(media_items):
         if i == selected_index:
-            continue  # skip the one you picked
+            continue  # skip the one you picked 
         results.append({
             "Title": item["title"],
             "Type": "🎬 Movie" if item["type"] == "movie" else "🎵 Music",

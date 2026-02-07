@@ -5,18 +5,18 @@ Handles authentication, rate limiting, and all movie endpoints.
 
 import os
 import time
+from pathlib import Path
 import requests
 from dotenv import load_dotenv
 
-load_dotenv()
+env_path = Path(__file__).resolve().parent.parent / ".env"
+load_dotenv(env_path)
 
 
 class TMDbClient:
     """
     The Movie Database API client.
     Rate limit: 40 requests per 10 seconds.
-    
-    Docs: https://developer.themoviedb.org/
     """
 
     BASE_URL = "https://api.themoviedb.org/3"
@@ -57,7 +57,6 @@ class TMDbClient:
             timeout=10,
         )
 
-        # If rate limited, wait and retry
         if response.status_code == 429:
             retry_after = int(response.headers.get("Retry-After", 10))
             print(f"  Rate limited. Waiting {retry_after}s...")
@@ -68,7 +67,7 @@ class TMDbClient:
         return response.json()
 
     def get_movie(self, movie_id):
-        """Get full movie details with keywords, credits, and certifications."""
+        """Get full movie details with keywords, credits, and release dates."""
         return self.get(f"/movie/{movie_id}", {
             "language": "en-US",
             "append_to_response": "keywords,credits,release_dates",

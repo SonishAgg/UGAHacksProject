@@ -9,20 +9,17 @@ import io
 def setup_unicode_fix():
     """Fix Unicode encoding for Windows/VS Code"""
     if sys.platform == "win32":
-        # Try to set UTF-8 encoding for stdout
+        # Set UTF-8 encoding for stdout
         try:
-            # For Python 3.7+
             sys.stdout.reconfigure(encoding='utf-8')
         except AttributeError:
-            # For older Python versions
             sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='ignore')
         
-        # Also fix stderr
+        # Fix stderr
         sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='ignore')
 
 # Call it at the start
 setup_unicode_fix()
-# ==============================================
 
 # Helper function for safe printing
 def safe_print(text, end='\n'):
@@ -84,6 +81,12 @@ def get_all_media_with_retry(media_type="ANIME", max_items=500, per_page=50):
                     popularity
                     genres
                     format
+                    tags {
+                        name
+                        description
+                        category
+                        rank
+                     }
                 }
             }
         }
@@ -203,6 +206,19 @@ def print_media_info(media_list, media_type="Anime"):
             print(f"Description: {clean_desc}")
         else:
             print("Description: No description available")
+        
+        if 'tags' in media and media['tags']:
+            # Get top 5 tags by rank
+            sorted_tags = sorted(media['tags'], key=lambda x: x.get('rank', 0), reverse=True)
+            top_tags = [tag['name'] for tag in sorted_tags[:5]]
+            print(f"Top Tags: {', '.join(top_tags)}")
+            
+            # Optional: Print tag details
+            print(f"Total Tags: {len(media['tags'])}")
+        else:
+            print("Tags: No tags available")
+
+        
     
     print(f"\n{'='*80}")
     print(f"Total {media_type}s: {len(media_list)}")

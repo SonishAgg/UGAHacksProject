@@ -1,0 +1,118 @@
+import streamlit as st
+from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity
+import pandas as pd
+import requests
+import json
+from concurrent.futures import ThreadPoolExecutor
+from typing import Dict, List, Set
+import html
+
+# ============================================
+# 1. LOAD THE AI MODEL (runs once, then cached)
+# ============================================
+@st.cache_resource
+def load_model():
+    return SentenceTransformer('all-MiniLM-L6-v2')
+
+model = load_model()
+
+# ============================================
+# 2. FAKE DATA (we'll use real APIs later)
+# ============================================
+TMDB_API_KEY = "YOUR_TMDB_API_KEY" = {
+    "Movies": "https://api.themoviedb.org/3" , 
+    "Anime / Manga": "https://graphql.anilist.co"
+}
+
+# ============================================
+# 3. GENERATE EMBEDDINGS (turn words → numbers)
+# ============================================
+@st.cache_data(ttl=300)
+def load_apis() -> Dict[str, List[Dict]]:
+    """Load Results from Movies and Anime / Manga"""
+    results = {}
+    
+    def fetch(name: str, url: str):
+        try:
+            resp = requests.get(url, timeout=10)
+            resp.raise_for_status()
+            data = resp.json()
+            return name, data if isinstance(data, list) else [data]
+        except Exception as e:
+            return name, {"error": str(e)}
+
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        futures = {executor.submit(fetch, name, url): name 
+                   for name, url in API_ENDPOINTS.items()}
+        for future in futures:
+            name, data = future.result()
+            results[name] = data
+
+   
+    return results
+
+ 
+# ============================================
+# 4. BUILD THE STREAMLIT UI
+# ============================================
+st.title("🎬🎵 Cross-Media Recommender")
+st.write("Search a Descriptor — get recommendations across various media types!")
+
+# Load API data and prepare media items
+api_data = load_apis()
+media_items = []
+for media_type, items in api_data.items():
+    if isinstance(items, list):
+        for item in items:
+            if isinstance(item, dict) and "title" in item:
+                item["type"] = media_type
+                media_items.append(item)
+
+# Generate embeddings for all items
+embeddings = [model.encode(item.get("description", item.get("title", ""))) for item in media_items]
+
+# Dropdown to pick a media item
+titles = [item["title"] for item in media_items]
+selected = st.selectbox("Choose one:", titles)
+
+# Find which item they picked
+selected_index = titles.index(selected)
+selected_item = media_items[selected_index]
+
+st.markdown(f"**You picked:** {selected_item['title']}  (`{selected_item['type']}`)")
+st.markdown(f"**Vibes:** _{selected_item['description']}_")
+
+st.divider()
+
+# ============================================
+# 5. FIND SIMILAR ITEMS (the magic part!)
+# ============================================
+if st.button("🔍 Get Recommendations"):
+
+    # Calculate how similar EVERY item is to the one you picked
+    selected_embedding = embeddings[selected_index].reshape(1, -1)
+    similarities = cosine_similarity(selected_embedding, embeddings)[0]
+
+    # Build a results table
+    results = []
+    for i, item in enumerate(media_items):
+        if i == selected_index:
+            continue  # skip the one you picked 
+        results.append({
+            "Title": item["title"],
+            "Type": "🎬 Movie" if item["type"] == "movie" else "🎵 Music",
+            "Match Score": f"{similarities[i]:.0%}",
+            "score_raw": similarities[i],
+        })
+
+    # Sort by highest match
+    results = sorted(results, key=lambda x: x["score_raw"], reverse=True)
+
+    # Display results
+    st.subheader("Your Recommendations:")
+    for rank, r in enumerate(results, 1):
+        st.write(f"**{rank}. {r['Type']} {r['Title']}** — {r['Match Score']} match")
+
+    st.snow()
+    

@@ -1,4 +1,5 @@
 streamlit
 sentence-transformers
+sklearn.metrics.pairwise
 numpy
 pandas

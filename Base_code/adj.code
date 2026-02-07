@@ -1,0 +1,196 @@
+import streamlit as st
+from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity
+import pandas as pd
+import requests
+import json
+from concurrent.futures import ThreadPoolExecutor
+from typing import Dict, List, Set
+import html
+
+# ============================================
+# 1. LOAD THE AI MODEL (runs once, then cached)
+# ============================================
+@st.cache_resource
+def load_model():
+    return SentenceTransformer('all-MiniLM-L6-v2')
+
+model = load_model()
+
+# ============================================
+# 2. FAKE DATA (we'll use real APIs later)
+# ============================================
+TMDB_API_KEY = "YOUR_TMDB_API_KEY" = {
+    "Movies": "https://api.themoviedb.org/3" , 
+    "Anime / Manga": "https://graphql.anilist.co"
+}
+
+# ============================================
+# 3. GENERATE EMBEDDINGS (turn words → numbers)
+# ============================================
+@st.cache_data(ttl=300)
+def fetch_tmdb_movies():
+    """Fetch popular movies from TMDB"""
+    try:
+        url = f"https://api.themoviedb.org/3/movie/popular?api_key={TMDB_API_KEY}&language=en-US&page=1"
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        data = response.json()
+        
+        movies = []
+        for movie in data.get("results", [])[:10]:  # Get first 10 popular movies
+            movies.append({
+                "title": movie.get("title", "Unknown"),
+                "type": "movie",
+                "description": movie.get("overview", "No description available"),
+                "tmdb_id": movie.get("id")
+            })
+        return movies
+    except Exception as e:
+        st.error(f"Error fetching movies: {e}")
+        return []
+
+def fetch_anilist_anime():
+    """Fetch popular anime from AniList (GraphQL)"""
+    try:
+        query = """
+        {
+          Page(page: 1, perPage: 10) {
+            media(type: ANIME, sort: POPULARITY_DESC) {
+              title {
+                english
+                romaji
+              }
+              description
+              id
+            }
+          }
+        }
+        """
+        
+        response = requests.post(
+            "https://graphql.anilist.co",
+            json={"query": query},
+            timeout=10
+        )
+        response.raise_for_status()
+        data = response.json()
+        
+        anime_list = []
+        for media in data.get("data", {}).get("Page", {}).get("media", []):
+            title = media.get("title", {})
+            anime_list.append({
+                "title": title.get("english") or title.get("romaji") or "Unknown",
+                "type": "anime",
+                "description": media.get("description", "No description available")[:200],
+                "anilist_id": media.get("id")
+            })
+        return anime_list
+    except Exception as e:
+        st.error(f"Error fetching anime: {e}")
+        return []
+
+@st.cache_data(ttl=3600)  # Cache for 1 hour
+def load_media_items():
+    """Load all media items from APIs"""
+    movies = fetch_tmdb_movies()
+    anime = fetch_anilist_anime()
+    return movies + anime
+@st.cache_data(ttl=3600)
+def generate_embeddings(media_items):
+    """Generate embeddings for all media items"""
+    texts = []
+    for item in media_items:
+        # Combine title and description for better embeddings
+        text = f"{item['title']}. {item['description']}"
+        texts.append(text)
+    
+    # Generate embeddings
+    embeddings = model.encode(texts)
+    return embeddings
+
+ 
+# ============================================
+# 4. BUILD THE STREAMLIT UI
+# ============================================
+st.title("🎬🎵 Cross-Media Recommender")
+st.write("Search a Descriptor — get recommendations across various media types!")
+st.sidebar.header("Search Filters")
+
+search_text = st.sidebar.text_input(
+    "Search titles & tags", 
+    placeholder="Enter keywords..."
+)
+st.sidebar.markdown("---")
+st.sidebar.subheader("Filter by Tags")
+
+tag_counts = {}
+for tags in  df['tags']:
+    for tag in tags:
+        tag_counts[tag] = tag_counts.get(tag, 0) + 1
+
+tag
+media_items = load_media_items()
+embeddings = generate_embeddings(media_items)
+
+if not media_items:
+    st.error("Failed to load media items...")
+    st.stop()
+
+# Load API data and prepare media items
+api_data = load_apis()
+media_items = []
+for media_type, items in api_data.items():
+    if isinstance(items, list):
+        for item in items:
+            if isinstance(item, dict) and "title" in item:
+                item["type"] = media_type
+                media_items.append(item)
+
+# Generate embeddings for all items
+embeddings = [model.encode(item.get("description", item.get("title", ""))) for item in media_items]
+
+# Dropdown to pick a media item
+titles = [f"{item['title']} ({item['type'].capitalize()})" for item in media_items]
+selected = st.selectbox("Choose one:", titles)
+
+# Find which item they picked
+selected_index = titles.index(selected)
+selected_item = media_items[selected_index]
+
+st.markdown(f"**You picked:** {selected_item['title']}  (`{selected_item['type']}`)")
+st.markdown(f"**Vibes:** _{selected_item['description']}_")
+
+st.divider()
+
+# ============================================
+# 5. FIND SIMILAR ITEMS (the magic part!)
+# ============================================
+if st.button("🔍 Get Recommendations"):
+
+    # Calculate how similar EVERY item is to the one you picked
+    selected_embedding = embeddings[selected_index].reshape(1, -1)
+    similarities = cosine_similarity(selected_embedding, embeddings)[0]
+
+    # Build a results table
+    results = []
+    for i, item in enumerate(media_items):
+        if i == selected_index:
+            continue  # skip the one you picked 
+        results.append({
+            "Title": item["title"],
+            "Type": "🎬 Movie" if item["type"] == "movie" else "🎵 Music",
+            "Match Score": f"{similarities[i]:.0%}",
+            "score_raw": similarities[i],
+        })
+
+    # Sort by highest match
+    results = sorted(results, key=lambda x: x["score_raw"], reverse=True)
+
+    # Display results
+    st.subheader("Your Recommendations:")
+    for rank, r in enumerate(results, 1):
+        st.write(f"**{rank}. {r['Type']} {r['Title']}** — {r['Match Score']} match")
+
+    st.snow()
+    

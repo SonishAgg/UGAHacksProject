@@ -23,8 +23,8 @@ def collect_default():
 
 def collect_large():
     collector = MovieCollector()
-    collector.collect_popular(pages=5)
-    collector.collect_top_rated(pages=5)
+    collector.collect_popular(pages=20)        # was 5
+    collector.collect_top_rated(pages=20)      # was 5
 
     genres = {
         28: "Action", 12: "Adventure", 16: "Animation", 35: "Comedy",
@@ -33,10 +33,10 @@ def collect_large():
         878: "Sci-Fi", 53: "Thriller", 10752: "War", 37: "Western",
     }
     for genre_id, genre_name in genres.items():
-        collector.collect_by_genre(genre_id, genre_name, pages=2)
+        collector.collect_by_genre(genre_id, genre_name, pages=10)  # was 2
 
     for decade in [1970, 1980, 1990, 2000, 2010, 2020]:
-        collector.collect_by_decade(decade, pages=2)
+        collector.collect_by_decade(decade, pages=10)  # was 2
 
     collector.save("movies_large.json")
     collector.stats()

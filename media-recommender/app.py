@@ -43,11 +43,11 @@ embeddings = get_embeddings()
 # 4. BUILD THE STREAMLIT UI
 # ============================================
 st.title("🎬🎵 Cross-Media Recommender")
-st.write("Pick a movie or song — get recommendations across BOTH media types!")
+st.write("Pick a movie, anime, manga, or song — get recommendations across ALL media types!")
 
 # Dropdown to pick a media item
 titles = [item["title"] for item in media_items]
-selected = st.selectbox("Choose a movie or song:", titles)
+selected = st.selectbox("Choose one:", titles)
 
 # Find which item they picked
 selected_index = titles.index(selected)

@@ -70,7 +70,6 @@ def get_all_media_with_retry(media_type="ANIME", max_items=500, per_page=50):
                 media(type: $type, sort: POPULARITY_DESC) {
                     id
                     title {
-                        romaji
                         english
                     }
                     description

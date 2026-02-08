@@ -40,10 +40,12 @@ class MediaRecommender:
                     self.items.append(item)
 
         # Load movies
-        movies_file = data_path / "movies_large.json"
+        movies_file = data_path / "movies.json"
         if movies_file.exists():
             with open(movies_file) as f:
-                for item in json.load(f):
+                raw = json.load(f)
+                movie_list = raw.get("movies", raw) if isinstance(raw, dict) else raw
+                for item in movie_list:
                     item["media_type"] = "movie"
                     self.items.append(item)
 

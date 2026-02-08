@@ -11,11 +11,16 @@ sys.path.insert(0, ML_DIR)
 
 st.set_page_config(page_title="Cross-Media Recommender", layout="wide")
 
+# ─── Session state for reroll tracking ───
+if "reroll_count" not in st.session_state:
+    st.session_state.reroll_count = 0
+if "last_search" not in st.session_state:
+    st.session_state.last_search = ""
+
 
 # ─── Load the ML model (cached so it only runs once) ───
 @st.cache_resource
 def load_recommender():
-    """Load the recommender model once and cache it."""
     from models.recommender import MediaRecommender
     import numpy as np
 
@@ -39,7 +44,6 @@ def load_recommender():
 
 @st.cache_data
 def get_all_titles(_recommender):
-    """Build a searchable list of all titles with their media type."""
     titles = []
     for item in _recommender.items:
         title = item.get("title", "Unknown")
@@ -52,19 +56,14 @@ def get_all_titles(_recommender):
 
 
 def get_cover_image(item: dict):
-    """Extract cover image URL from any media type."""
-    # Movies (TMDB)
     poster = item.get("poster_path") or item.get("poster", "")
     if poster and isinstance(poster, str):
         if not poster.startswith("http"):
             return f"https://image.tmdb.org/t/p/w300{poster}"
         return poster
-
-    # Anime/Manga (AniList)
     cover = item.get("coverImage")
     if isinstance(cover, dict):
         return cover.get("large") or cover.get("medium")
-
     return None
 
 
@@ -105,14 +104,31 @@ st.caption(
     "Enter a movie, anime, or manga title — get the most similar movie, anime, and manga!"
 )
 
-search_input = st.selectbox(
-    "🔍 Search for a title",
-    options=[""] + all_titles,
-    index=0,
-    placeholder="Start typing a title...",
-)
+# ─── Search row with reroll button ───
+search_col, reroll_col = st.columns([5, 1])
+
+with search_col:
+    search_input = st.selectbox(
+        "🔍 Search for a title",
+        options=[""] + all_titles,
+        index=0,
+        placeholder="Start typing a title...",
+    )
+
+# Reset reroll count when search changes
+if search_input != st.session_state.last_search:
+    st.session_state.reroll_count = 0
+    st.session_state.last_search = search_input
+
+with reroll_col:
+    st.markdown("<br>", unsafe_allow_html=True)  # vertical align with selectbox
+    if st.button("🎲 Reroll", use_container_width=True, disabled=(search_input == "")):
+        st.session_state.reroll_count += 1
 
 st.divider()
+
+# ─── Max results to fetch (enough for many rerolls) ───
+MAX_DEPTH = 10
 
 if search_input and search_input != "":
     # Extract title from "📺 Title (anime)" format
@@ -123,7 +139,7 @@ if search_input and search_input != "":
         clean_title = search_input
 
     with st.spinner("Finding recommendations..."):
-        results = recommender.recommend(clean_title, n_per_type=1)
+        results = recommender.recommend(clean_title, n_per_type=MAX_DEPTH)
 
     if not results:
         st.error(f"Could not find '{clean_title}' in the database. Try another title.")
@@ -133,69 +149,92 @@ if search_input and search_input != "":
         source_type = source.get("media_type", "unknown")
         source_emoji = {"anime": "📺", "manga": "📖", "movie": "🎬"}.get(source_type, "❓")
 
-        # ─── Source card ───
-        st.markdown(f"### {source_emoji} You searched: **{source_title}**")
-        src_col1, src_col2 = st.columns([1, 3])
-        with src_col1:
-            img = get_cover_image(source)
-            if img:
-                st.image(img, width=200)
-        with src_col2:
-            genres = get_genres(source)
-            year = get_year(source)
-            if year:
-                st.markdown(f"**Year:** {year}")
-            if genres:
-                st.markdown(f"**Genres:** {', '.join(genres)}")
-            desc = get_description(source)
-            if desc:
-                st.markdown(f"{desc}")
+        # Figure out current pick index
+        pick = st.session_state.reroll_count
 
-        st.divider()
-        st.markdown("### 🎯 Top Recommendations")
+        # Clamp to available results
+        max_available = max(
+            len(results["movie"]),
+            len(results["anime"]),
+            len(results["manga"]),
+        )
 
-        # ─── Three columns: Movie, Anime, Manga ───
-        sections = [
-            ("🎬 Movie", results["movie"]),
-            ("📺 Anime", results["anime"]),
-            ("📖 Manga", results["manga"]),
-        ]
+        if max_available == 0:
+            st.error("No recommendations found.")
+        else:
+            if pick >= max_available:
+                pick = max_available - 1
+                st.session_state.reroll_count = pick
 
-        col1, col2, col3 = st.columns(3)
-
-        for col, (header, items) in zip([col1, col2, col3], sections):
-            with col:
-                st.markdown(f"#### {header}")
-
-                if not items:
-                    st.info("No match found.")
-                    continue
-
-                item, score = items[0]
-                title = get_display_title(item)
-                year = get_year(item)
-                genres = get_genres(item)
-                desc = get_description(item)
-
-                # Cover image
-                img = get_cover_image(item)
+            # ─── Source card ───
+            st.markdown(f"### {source_emoji} You searched: **{source_title}**")
+            src_col1, src_col2 = st.columns([1, 3])
+            with src_col1:
+                img = get_cover_image(source)
                 if img:
                     st.image(img, width=200)
-
-                st.markdown(f"**{title}**")
+            with src_col2:
+                genres = get_genres(source)
+                year = get_year(source)
                 if year:
-                    st.caption(f"📅 {year}")
-
-                # Match score
-                st.metric("Match", f"{score:.0%}")
-
+                    st.markdown(f"**Year:** {year}")
                 if genres:
-                    genre_tags = " · ".join(genres)
-                    st.caption(f"🏷️ {genre_tags}")
-
+                    st.markdown(f"**Genres:** {', '.join(genres)}")
+                desc = get_description(source)
                 if desc:
-                    with st.expander("Description"):
-                        st.write(desc)
+                    st.markdown(f"{desc}")
+
+            st.divider()
+
+            # Show which pick we're on
+            st.markdown(f"### 🎯 Recommendation #{pick + 1}")
+            if pick > 0:
+                st.caption(f"Press 🎲 Reroll for the next best picks  ·  Showing pick {pick + 1} of {max_available}")
+            else:
+                st.caption("Press 🎲 Reroll to see alternative recommendations")
+
+            # ─── Three columns: Movie, Anime, Manga ───
+            sections = [
+                ("🎬 Movie", results["movie"]),
+                ("📺 Anime", results["anime"]),
+                ("📖 Manga", results["manga"]),
+            ]
+
+            col1, col2, col3 = st.columns(3)
+
+            for col, (header, items) in zip([col1, col2, col3], sections):
+                with col:
+                    st.markdown(f"#### {header}")
+
+                    if pick >= len(items) or not items:
+                        st.info("No more matches.")
+                        continue
+
+                    item, score = items[pick]
+                    title = get_display_title(item)
+                    year = get_year(item)
+                    genres = get_genres(item)
+                    desc = get_description(item)
+
+                    # Cover image
+                    img = get_cover_image(item)
+                    if img:
+                        st.image(img, width=200)
+
+                    st.markdown(f"**{title}**")
+                    if year:
+                        st.caption(f"📅 {year}")
+
+                    # Match score
+                    st.metric("Match", f"{score:.0%}")
+
+                    if genres:
+                        genre_tags = " · ".join(genres)
+                        st.caption(f"🏷️ {genre_tags}")
+
+                    if desc:
+                        with st.expander("Description"):
+                            st.write(desc)
 
 else:
     st.info("👆 Select a title above to get cross-media recommendations!")

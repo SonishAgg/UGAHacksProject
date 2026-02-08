@@ -1,126 +1,45 @@
-# 🎥 Media Search
+# Cross-Media Recommender
 
-A Streamlit web app that lets you search for **movies**, **anime**, and **manga** using a single keyword. Powered by the [TMDB API](https://www.themoviedb.org/documentation/api) and [AniList API](https://anilist.gitbook.io/anilist-apiv2-docs/).
+Cross-Media Recommender is a mixed media recommendation program that utilizes semantic similarity, K-Nearest Neighbors, and Hugging Face to take a user's input of a movie, anime, or manga and recommend the best movie, anime, or manga based on similarity. Rather than relying on brittle keyword matching, the system converts tags and genres into weighted text, encodes them into 384-dimensional vectors using Sentence-BERT (all-MiniLM-L6-v2), and performs cosine similarity searches to find the nearest neighbors across all three media types. This allows the engine to connect concepts like "wormhole" to "space opera" or "coming of age" to "teenage protagonist" without requiring exact term overlap.
 
-![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
-![Streamlit](https://img.shields.io/badge/Streamlit-1.30%2B-FF4B4B)
-![License](https://img.shields.io/badge/License-MIT-green)
+## Features
 
----
+The application offers cross-media recommendations where a single input returns the most similar movies, anime, and manga. It uses semantic embeddings to relate meaning across entirely different datasets and leverages AniList user description ratings to weight tag accuracy. The frontend is built with Streamlit for easy exploration and includes a re-roll system so users can refresh their picks if the initial results don't appeal to them.
 
-## ✨ Features
+## Tech Stack
 
-- 🎬 **Movie Search** — Search movies via TMDB with genre tags and descriptions
-- 📺 **Anime Search** — Search anime via AniList with genre tags and descriptions
-- 📖 **Manga Search** — Search manga via AniList with genre tags and descriptions
-- 🔀 **Toggle Results** — Show/hide movies, anime, or manga with checkboxes
-- ⚡ **Cached Requests** — API responses are cached for fast repeat searches
-- 🎨 **Clean UI** — Simple, responsive layout built with Streamlit
+The frontend is built with Streamlit and Python. The ML model uses Sentence-BERT (all-MiniLM-L6-v2) from Hugging Face along with scikit-learn. Similarity search is handled by K-Nearest Neighbors with cosine distance. Data is sourced from the TMDB API for movies and the AniList GraphQL API for anime and manga. All media items are represented as 384-dimensional semantic vectors.
 
----
+## Project Structure
 
-## 📸 Preview
+The repository is split into two main directories. The `ML/` directory contains the machine learning backend including data collection scripts (`tmdb_client.py`, `collector.py`), model logic (`tag_encoder.py`, `recommender.py`), runner scripts (`collect_movies.py`, `run_recommender.py`), and stored data (`movies.json`, `anime_list.json`, `manga_list.json`, `embeddings.npz`). The `media-recommender/` directory contains `app.py`, which is the Streamlit web interface. The root also includes a `.env` file for API credentials and a `requirements.txt` for dependencies.
 
-| Search View | Results |
-|---|---|
-| Enter a keyword and toggle media types | Movies, anime, and manga displayed with tags |
+## Getting Started
 
----
+You will need Python 3.10 or higher and a free TMDB API account. Clone the repository, create a virtual environment, and install dependencies with `pip install -r requirements.txt`. Then create a `ML/.env` file containing your TMDB bearer token. Run `python3 scripts/collect_movies.py --large` and `python3 scripts/fetch_anilist.py` from the `ML/` directory to collect data. Finally, run `streamlit run media-recommender/app.py` from the project root and open `http://localhost:8501` in your browser.
 
-## 🚀 Getting Started
+## How It Works
 
-### Prerequisites
+Tags and genres from each media item are converted into weighted text where high-confidence AniList tags and genres receive greater emphasis. Sentence-BERT then encodes this text into a 384-dimensional vector. At query time, the input item's vector is compared against all stored vectors using cosine similarity via KNN. The top results are grouped by media type and returned to the user. The system also automatically deduplicates franchises and excludes the input item from results.
 
-- Python 3.10 or higher
-- A [TMDB API Key](https://www.themoviedb.org/settings/api) (free)
+## Datasets and Performance
 
-### Installation
+The system indexes approximately 4,500 items total: around 2,500 movies from TMDB, 1,000 anime from AniList, and 1,000 manga from AniList. Initial load takes roughly 15 seconds, the one-time embedding build takes around 30 seconds, and individual queries respond in under 100 milliseconds. A CLI mode is also available by running `python3 scripts/run_recommender.py` from the `ML/` directory.
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/your-username/media-recommender.git
-   cd media-recommender
-Create a virtual environment:
+## Future Work
 
+Planned improvements include music recommendations, user personalization, additional data sources, model fine-tuning, and cloud deployment.
 
-python3 -m venv .venv
-source .venv/bin/activate   # macOS/Linux
-.venv\Scripts\activate      # Windows
-Install dependencies:
+## Acknowledgments
 
-
-pip install -r requirements.txt
-Add your TMDB API key:
-
-Create a file at .streamlit/secrets.toml:
-
-
-mkdir -p .streamlit
-echo 'TMDB_API_KEY = "your_api_key_here"' > .streamlit/secrets.toml
-Then update line 13 in app.py:
-
-
-TMDB_API_KEY = "TMDB_API_KEY"
-Run the app:
-
-
-streamlit run app.py
-The app will open at https://ugahacksproject-fsjdj8xjt38azbhbhnjqdi.streamlit.app/#romance
-
-📁 Project Structure
-
-media-recommender/
-├── .streamlit/
-│   └── secrets.toml       # API keys (not committed)
-├── app.py                 # Main Streamlit application
-├── requirements.txt       # Python dependencies
-├── README.md              # This file
-└── .gitignore
-📦 Dependencies
-Package	Purpose
-streamlit	Web app framework
-requests	HTTP requests to TMDB and AniList APIs
-Create a requirements.txt:
-
-
-streamlit
-requests
-🔌 APIs Used
-API	Used For	Auth
-TMDB API v3	Movie search & genre data	API key (query param)
-AniList GraphQL	Anime & manga search	None (public)
-🛡️ Security
-⚠️ Never commit your API keys to GitHub.
-
-Make sure your .gitignore includes:
-
-
-.streamlit/secrets.toml
-📝 Usage
-Type a keyword (e.g., cyberpunk, romance, fantasy)
-Check/uncheck Movies, Anime, or Manga
-View results with descriptions and genre tags
-🤝 Contributing
-Fork the repo
-Create a feature branch (git checkout -b feature/new-feature)
-Commit your changes (git commit -m "Add new feature")
-Push to the branch (git push origin feature/new-feature)
-Open a Pull Request
-📄 License
-This project is licensed under the MIT License. See LICENSE for details.
-
-🙏 Acknowledgments
-TMDB for the movie database API
-AniList for the anime/manga GraphQL API
-Streamlit for the web framework
-Built with ❤️ at UGA Hacks
+This project was built at UGA Hacks 11. It is powered by TMDB, AniList, Sentence-Transformers, and Streamlit. 
 
 
 
----
 
-To create it, run:
 
-```bash
-cd /Users/sonish/Desktop/UGAHacks/media-recommender
-nano README.md
+
+
+
+
+

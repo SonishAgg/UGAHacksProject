@@ -16,7 +16,7 @@ The repository is split into two main directories. The `ML/` directory contains 
 
 ## Getting Started
 
-You will need Python 3.10 or higher and a free TMDB API account. Clone the repository, create a virtual environment, and install dependencies with `pip install -r requirements.txt`. Then create a `ML/.env` file containing your TMDB bearer token. Run `python3 scripts/collect_movies.py --large` and `python3 scripts/fetch_anilist.py` from the `ML/` directory to collect data. Finally, run `streamlit run media-recommender/app.py` from the project root and open `http://localhost:8501` in your browser.
+You will need Python 3.10 or higher and a free TMDB API account. Clone the repository, create a virtual environment, and install dependencies with `pip install -r requirements.txt`. Then create a `ML/.env` file containing your TMDB bearer token. Run `python3 scripts/collect_movies.py --large` and `python3 scripts/fetch_anilist.py` from the `ML/` directory to collect data. Finally, run `streamlit run media-recommender/app.py` from the project root and open `http://localhost:8501` in your browser. 
 
 ## How It Works
 

@@ -24,7 +24,7 @@ class MediaRecommender:
         data_path = Path(data_dir)
 
         # Load anime
-        anime_file = data_path / "anime.json"
+        anime_file = data_path / "anime_list.json"
         if anime_file.exists():
             with open(anime_file) as f:
                 for item in json.load(f):
@@ -32,7 +32,7 @@ class MediaRecommender:
                     self.items.append(item)
 
         # Load manga
-        manga_file = data_path / "manga.json"
+        manga_file = data_path / "manga_list.json"
         if manga_file.exists():
             with open(manga_file) as f:
                 for item in json.load(f):
@@ -40,7 +40,7 @@ class MediaRecommender:
                     self.items.append(item)
 
         # Load movies
-        movies_file = data_path / "movies.json"
+        movies_file = data_path / "movies_large.json"
         if movies_file.exists():
             with open(movies_file) as f:
                 for item in json.load(f):

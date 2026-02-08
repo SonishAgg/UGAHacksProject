@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-TMDB_API_KEY = st.secrets["TMDB_API_KEY"]
+TMDB_API_KEY = st.secrets["24859a61465a5fcdca16003e3c27b9ef"]
 JIKAN_API = "https://api.jikan.moe/v4"
 
 # --------------------------------------------------

@@ -1,182 +1,208 @@
 import streamlit as st
-import requests
+import sys
+import os
+import re
 
-st.set_page_config(page_title="Descriptor Media Search", layout="wide")
+# Add the ML directory to path so we can import the recommender
+APP_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(APP_DIR)
+ML_DIR = os.path.join(PROJECT_ROOT, "ML")
+sys.path.insert(0, ML_DIR)
 
-TMDB_API_KEY = st.secrets["TMDB_API_KEY"]
-ANILIST_API_URL = "https://graphql.anilist.co"
+st.set_page_config(page_title="Cross-Media Recommender", layout="wide")
 
-def truncate(text: str, n: int = 260) -> str:
-    if not text:
-        return ""
-    return text[:n] + "..." if len(text) > n else text
 
-def clean(s: str) -> str:
-    return (s or "").strip()
+# ─── Load the ML model (cached so it only runs once) ───
+@st.cache_resource
+def load_recommender():
+    """Load the recommender model once and cache it."""
+    from models.recommender import MediaRecommender
+    import numpy as np
 
-# -----------------------------
-# TMDB (Movies) - descriptor via "keyword" -> discover
-# -----------------------------
-@st.cache_data(ttl=3600)
-def tmdb_genres():
-    r = requests.get(
-        "https://api.themoviedb.org/3/genre/movie/list",
-        params={"api_key": TMDB_API_KEY},
-        timeout=10,
-    )
-    r.raise_for_status()
-    genres = r.json().get("genres", [])
-    # name->id and id->name
-    name_to_id = {g["name"].lower(): g["id"] for g in genres}
-    id_to_name = {g["id"]: g["name"].lower() for g in genres}
-    return name_to_id, id_to_name
+    recommender = MediaRecommender()
+    recommender.load_data(os.path.join(ML_DIR, "data"))
 
-@st.cache_data(ttl=300)
-def tmdb_keyword_ids(descriptor: str, max_ids: int = 3):
-    r = requests.get(
-        "https://api.themoviedb.org/3/search/keyword",
-        params={"api_key": TMDB_API_KEY, "query": descriptor},
-        timeout=10,
-    )
-    r.raise_for_status()
-    results = r.json().get("results", [])
-    # take a few best matching keyword IDs
-    return [k["id"] for k in results[:max_ids] if "id" in k]
+    emb_path = os.path.join(ML_DIR, "data", "embeddings.npz")
+    if os.path.exists(emb_path):
+        data = np.load(emb_path)
+        if data["embeddings"].shape[0] == len(recommender.items):
+            recommender.load_index(emb_path)
+        else:
+            recommender.build_index()
+            recommender.save_index(emb_path)
+    else:
+        recommender.build_index()
+        recommender.save_index(emb_path)
 
-@st.cache_data(ttl=300)
-def tmdb_discover_movies(descriptor: str, limit: int = 12):
-    name_to_id, id_to_name = tmdb_genres()
+    return recommender
 
-    # If descriptor matches an actual TMDB genre name, use with_genres too
-    genre_id = name_to_id.get(descriptor.lower())
 
-    # Also try keyword-based discovery for broader descriptors
-    kw_ids = tmdb_keyword_ids(descriptor, max_ids=3)
+@st.cache_data
+def get_all_titles(_recommender):
+    """Build a searchable list of all titles with their media type."""
+    titles = []
+    for item in _recommender.items:
+        title = item.get("title", "Unknown")
+        if isinstance(title, dict):
+            title = title.get("english") or title.get("romaji") or "Unknown"
+        media_type = item.get("media_type", "unknown")
+        emoji = {"anime": "📺", "manga": "📖", "movie": "🎬"}.get(media_type, "❓")
+        titles.append(f"{emoji} {title} ({media_type})")
+    return sorted(set(titles))
 
-    params = {
-        "api_key": TMDB_API_KEY,
-        "sort_by": "popularity.desc",
-        "include_adult": "false",
-        "page": 1,
-    }
-    if genre_id:
-        params["with_genres"] = str(genre_id)
-    if kw_ids:
-        params["with_keywords"] = ",".join(str(x) for x in kw_ids)
 
-    # If neither matched, discovery will be too broad; return empty
-    if not genre_id and not kw_ids:
-        return []
+def get_cover_image(item: dict):
+    """Extract cover image URL from any media type."""
+    # Movies (TMDB)
+    poster = item.get("poster_path") or item.get("poster", "")
+    if poster and isinstance(poster, str):
+        if not poster.startswith("http"):
+            return f"https://image.tmdb.org/t/p/w300{poster}"
+        return poster
 
-    r = requests.get("https://api.themoviedb.org/3/discover/movie", params=params, timeout=10)
-    r.raise_for_status()
-    items = r.json().get("results", [])[:limit]
+    # Anime/Manga (AniList)
+    cover = item.get("coverImage")
+    if isinstance(cover, dict):
+        return cover.get("large") or cover.get("medium")
 
-    # Normalize tags (genres) from genre_ids
-    out = []
-    for m in items:
-        tags = [id_to_name.get(gid) for gid in m.get("genre_ids", []) if gid in id_to_name]
-        out.append({
-            "title": m.get("title") or "Untitled",
-            "description": m.get("overview") or "",
-            "tags": [t for t in tags if t],
-            "type": "Movie",
-        })
-    return out
+    return None
 
-# -----------------------------
-# AniList (Anime/Manga) - descriptor via genre_in / tag_in
-# -----------------------------
-ANILIST_DESCRIPTOR_QUERY = """
-query ($type: MediaType, $genre_in: [String], $tag_in: [String]) {
-  Page(perPage: 12) {
-    media(type: $type, genre_in: $genre_in, tag_in: $tag_in, sort: POPULARITY_DESC) {
-      title { romaji english }
-      description(asHtml: false)
-      genres
-      tags { name }
-    }
-  }
-}
-"""
 
-@st.cache_data(ttl=300)
-def anilist_by_descriptor(descriptor: str, media_type: str):
-    # AniList expects exact-ish strings for genre/tag.
-    # We'll try both: genre_in and tag_in with the same descriptor.
-    variables = {
-        "type": media_type,
-        "genre_in": [descriptor],
-        "tag_in": [descriptor],
-    }
-    r = requests.post(
-        ANILIST_API_URL,
-        json={"query": ANILIST_DESCRIPTOR_QUERY, "variables": variables},
-        timeout=10,
-    )
-    r.raise_for_status()
-    data = r.json()
-    items = data.get("data", {}).get("Page", {}).get("media", []) or []
+def get_display_title(item: dict) -> str:
+    title = item.get("title", "Unknown")
+    if isinstance(title, dict):
+        return title.get("english") or title.get("romaji") or "Unknown"
+    return str(title)
 
-    out = []
-    for it in items:
-        title = it["title"].get("english") or it["title"].get("romaji") or "Untitled"
-        genres = [g.lower() for g in (it.get("genres") or [])]
-        tag_names = [t["name"].lower() for t in (it.get("tags") or []) if "name" in t]
-        # Keep it simple: show genres + a few tags
-        tags = list(dict.fromkeys(genres + tag_names[:6]))
 
-        out.append({
-            "title": title,
-            "description": it.get("description") or "",
-            "tags": tags,
-            "type": "Anime" if media_type == "ANIME" else "Manga",
-        })
-    return out
+def get_description(item: dict) -> str:
+    desc = item.get("description") or item.get("overview") or ""
+    clean = re.sub(r'<[^>]+>', '', str(desc))
+    if len(clean) > 300:
+        clean = clean[:300] + "..."
+    return clean
 
-# -----------------------------
-# UI
-# -----------------------------
-st.title("🔎 Descriptor Media Search")
-st.caption("Search by a descriptor (genre/tag/keyword), not by title. Examples: romance, cyberpunk, time travel, sports.")
 
-descriptor = st.text_input("Descriptor", placeholder="e.g., romance, cyberpunk, time travel")
+def get_year(item: dict) -> str:
+    year = item.get("year") or item.get("seasonYear") or item.get("release_date", "")
+    if isinstance(year, str) and len(year) >= 4:
+        return year[:4]
+    return str(year) if year else ""
 
-c1, c2, c3 = st.columns(3)
-show_movies = c1.checkbox("Movies", value=True)
-show_anime = c2.checkbox("Anime", value=True)
-show_manga = c3.checkbox("Manga", value=True)
+
+def get_genres(item: dict) -> list:
+    return item.get("genres", [])[:5]
+
+
+# ─── Load model ───
+with st.spinner("Loading recommender model..."):
+    recommender = load_recommender()
+    all_titles = get_all_titles(recommender)
+
+# ─── UI ───
+st.title("🎯 Cross-Media Recommender")
+st.caption(
+    "Enter a movie, anime, or manga title — get the most similar movie, anime, and manga!"
+)
+
+search_input = st.selectbox(
+    "🔍 Search for a title",
+    options=[""] + all_titles,
+    index=0,
+    placeholder="Start typing a title...",
+)
 
 st.divider()
 
-if descriptor:
-    with st.spinner("Finding matches..."):
-        results = []
+if search_input and search_input != "":
+    # Extract title from "📺 Title (anime)" format
+    match = re.match(r'^[^\s]+\s+(.+)\s+\(\w+\)$', search_input)
+    if match:
+        clean_title = match.group(1)
+    else:
+        clean_title = search_input
 
-        if show_movies:
-            results += tmdb_discover_movies(descriptor)
-
-        if show_anime:
-            results += anilist_by_descriptor(descriptor, "ANIME")
-
-        if show_manga:
-            results += anilist_by_descriptor(descriptor, "MANGA")
+    with st.spinner("Finding recommendations..."):
+        results = recommender.recommend(clean_title, n_per_type=1)
 
     if not results:
-        st.warning("No matches found for that descriptor. Try a simpler genre (e.g., action, romance, fantasy).")
+        st.error(f"Could not find '{clean_title}' in the database. Try another title.")
     else:
-        # Group by type so it's easy to read
-        for section in ["Movie", "Anime", "Manga"]:
-            section_items = [r for r in results if r["type"] == section]
-            if not section_items:
-                continue
+        source = results["source"]
+        source_title = get_display_title(source)
+        source_type = source.get("media_type", "unknown")
+        source_emoji = {"anime": "📺", "manga": "📖", "movie": "🎬"}.get(source_type, "❓")
 
-            st.subheader(f"{section}s" if section != "Manga" else "Manga")
-            for item in section_items:
-                st.markdown(f"**{item['title']}**")
-                st.write(truncate(item["description"]))
-                if item["tags"]:
-                    st.caption("Tags: " + ", ".join(item["tags"][:10]))
-                st.divider()
+        # ─── Source card ───
+        st.markdown(f"### {source_emoji} You searched: **{source_title}**")
+        src_col1, src_col2 = st.columns([1, 3])
+        with src_col1:
+            img = get_cover_image(source)
+            if img:
+                st.image(img, width=200)
+        with src_col2:
+            genres = get_genres(source)
+            year = get_year(source)
+            if year:
+                st.markdown(f"**Year:** {year}")
+            if genres:
+                st.markdown(f"**Genres:** {', '.join(genres)}")
+            desc = get_description(source)
+            if desc:
+                st.markdown(f"{desc}")
+
+        st.divider()
+        st.markdown("### 🎯 Top Recommendations")
+
+        # ─── Three columns: Movie, Anime, Manga ───
+        sections = [
+            ("🎬 Movie", results["movie"]),
+            ("📺 Anime", results["anime"]),
+            ("📖 Manga", results["manga"]),
+        ]
+
+        col1, col2, col3 = st.columns(3)
+
+        for col, (header, items) in zip([col1, col2, col3], sections):
+            with col:
+                st.markdown(f"#### {header}")
+
+                if not items:
+                    st.info("No match found.")
+                    continue
+
+                item, score = items[0]
+                title = get_display_title(item)
+                year = get_year(item)
+                genres = get_genres(item)
+                desc = get_description(item)
+
+                # Cover image
+                img = get_cover_image(item)
+                if img:
+                    st.image(img, width=200)
+
+                st.markdown(f"**{title}**")
+                if year:
+                    st.caption(f"📅 {year}")
+
+                # Match score
+                st.metric("Match", f"{score:.0%}")
+
+                if genres:
+                    genre_tags = " · ".join(genres)
+                    st.caption(f"🏷️ {genre_tags}")
+
+                if desc:
+                    with st.expander("Description"):
+                        st.write(desc)
+
 else:
-    st.info("Type a descriptor above to search.")
+    st.info("👆 Select a title above to get cross-media recommendations!")
+
+    st.markdown("### 💡 Try these:")
+    examples = ["Banana Fish", "Attack on Titan", "The Godfather", "Naruto", "Spirited Away"]
+    ecols = st.columns(len(examples))
+    for ecol, ex in zip(ecols, examples):
+        with ecol:
+            st.code(ex, language=None)

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "total_movies": 195,
-    "collected_at": "2026-02-07T22:42:15.695458",
+    "collected_at": "2026-02-08T01:32:07.269258",
     "source": "tmdb",
     "errors": 0
   },
@@ -82,7 +82,7 @@
       ],
       "overview": "Estranged half-brothers Jonny and James reunite after their father's mysterious death. As they search for the truth, buried secrets reveal a conspiracy threatening to tear their family apart.",
       "rating": 6.8,
-      "vote_count": 410,
+      "vote_count": 424,
       "popularity": 515.8219,
       "budget": 78500000,
       "revenue": 89000000,
@@ -191,8 +191,8 @@
       ],
       "overview": "Having found the safety of the Greenland bunker after the comet Clarke decimated the Earth, the Garrity family must now risk everything to embark on a perilous journey across the wasteland of Europe to find a new home.",
       "rating": 6.5,
-      "vote_count": 331,
-      "popularity": 515.6229,
+      "vote_count": 340,
+      "popularity": 498.0278,
       "budget": 90000000,
       "revenue": 20806332,
       "countries": [
@@ -416,7 +416,7 @@
       ],
       "overview": "After cracking the biggest case in Zootopia's history, rookie cops Judy Hopps and Nick Wilde find themselves on the twisting trail of a great mystery when Gary De'Snake arrives and turns the animal metropolis upside down. To crack the case, Judy and Nick must go undercover to unexpected new parts of town, where their growing partnership is tested like never before.",
       "rating": 7.6,
-      "vote_count": 1551,
+      "vote_count": 1565,
       "popularity": 289.9841,
       "budget": 150000000,
       "revenue": 177944080,
@@ -1088,7 +1088,7 @@
       ],
       "overview": "In the wake of the devastating war against the RDA and the loss of their eldest son, Jake Sully and Neytiri face a new threat on Pandora: the Ash People, a violent and power-hungry Na'vi tribe led by the ruthless Varang. Jake's family must fight for their survival and the future of Pandora in a conflict that pushes them to their emotional and physical limits.",
       "rating": 7.3,
-      "vote_count": 1695,
+      "vote_count": 1698,
       "popularity": 148.9104,
       "budget": 350000000,
       "revenue": 1416164929,
@@ -1188,7 +1188,7 @@
       ],
       "overview": "Cast out from his clan, a young Predator finds an unlikely ally in a damaged android and embarks on a treacherous journey in search of the ultimate adversary.",
       "rating": 7.8,
-      "vote_count": 1812,
+      "vote_count": 1816,
       "popularity": 146.2502,
       "budget": 105000000,
       "revenue": 184561056,
@@ -1196,8 +1196,8 @@
         "United States of America"
       ],
       "languages": [
-        "French",
-        "English"
+        "English",
+        "French"
       ],
       "companies": [
         "20th Century Studios",
@@ -1496,7 +1496,7 @@
       ],
       "overview": "The powerful story of love and loss that inspired the creation of Shakespeare's timeless masterpiece, Hamlet.",
       "rating": 7.7,
-      "vote_count": 295,
+      "vote_count": 312,
       "popularity": 118.4984,
       "budget": 35000000,
       "revenue": 58470685,
@@ -1596,7 +1596,7 @@
       ],
       "overview": "From the songs of his mother’s heart to the whispers of a faithful God, David’s story begins in quiet devotion. When the giant Goliath rises to terrorize a nation, a young shepherd armed with only a sling, a few stones, and unshakable faith steps forward. Pursued by power and driven by purpose, his journey tests the limits of loyalty, love, and courage—culminating in a battle not just for a crown, but for the soul of a kingdom.",
       "rating": 8.1,
-      "vote_count": 68,
+      "vote_count": 70,
       "popularity": 114.0993,
       "budget": 60900000,
       "revenue": 83092325,
@@ -1802,8 +1802,8 @@
       ],
       "overview": "Two colleagues become stranded on a deserted island, the only survivors of a plane crash. On the island, they must overcome past grievances and work together to survive, but ultimately, it's a battle of wills and wits to make it out alive.",
       "rating": 7.0,
-      "vote_count": 178,
-      "popularity": 96.3278,
+      "vote_count": 186,
+      "popularity": 95.4722,
       "budget": 40000000,
       "revenue": 32592960,
       "countries": [
@@ -2405,7 +2405,7 @@
       ],
       "overview": "Xander Cage is your standard adrenaline junkie with no fear and a lousy attitude. When the US Government \"recruits\" him to go on a mission, he's not exactly thrilled. His mission: to gather information on an organization that may just be planning the destruction of the world, led by the nihilistic Yorgi.",
       "rating": 6.0,
-      "vote_count": 4773,
+      "vote_count": 4774,
       "popularity": 78.2459,
       "budget": 70000000,
       "revenue": 277448382,
@@ -2622,7 +2622,7 @@
       ],
       "overview": "A young Indigenous game warden arrests an infamous poacher only to discover that the poacher knows the location of a plane carrying millions of dollars that has crashed in a frozen lake. When a group of criminals and dirty cops are alerted to the poacher’s whereabouts, the warden and the poacher team up to fight back and escape across the treacherous lake before the ice melts.",
       "rating": 6.4,
-      "vote_count": 111,
+      "vote_count": 116,
       "popularity": 72.7376,
       "budget": 0,
       "revenue": 0,
@@ -2741,7 +2741,7 @@
       ],
       "overview": "In the early 2000s, an Indian undercover operative infiltrates Karachi’s underworld, breaking into its inner circle to dismantle a violent nexus from within.",
       "rating": 7.0,
-      "vote_count": 184,
+      "vote_count": 185,
       "popularity": 68.1121,
       "budget": 22500000,
       "revenue": 160000000,
@@ -2932,9 +2932,9 @@
         }
       ],
       "overview": "A socially awkward tween endures the ruthless hierarchy at a water polo camp, his anxiety spiraling into psychological turmoil over the summer.",
-      "rating": 7.3,
-      "vote_count": 26,
-      "popularity": 65.6501,
+      "rating": 7.2,
+      "vote_count": 28,
+      "popularity": 72.7062,
       "budget": 1000000,
       "revenue": 685153,
       "countries": [
@@ -3298,7 +3298,7 @@
       ],
       "writers": [
         "Joss Whedon",
-        "Zak Penn",
+        "Jack Kirby",
         "Joss Whedon"
       ],
       "composers": [
@@ -3351,8 +3351,8 @@
       ],
       "overview": "When an unexpected enemy emerges and threatens global safety and security, Nick Fury, director of the international peacekeeping agency known as S.H.I.E.L.D., finds himself in need of a team to pull the world back from the brink of disaster. Spanning the globe, a daring recruitment effort begins!",
       "rating": 7.9,
-      "vote_count": 35707,
-      "popularity": 59.0248,
+      "vote_count": 35718,
+      "popularity": 63.2171,
       "budget": 220000000,
       "revenue": 1518815515,
       "countries": [
@@ -3452,8 +3452,8 @@
       ],
       "overview": "The original Four Horsemen reunite with a new generation of illusionists to take on powerful diamond heiress Veronika Vanderberg, who leads a criminal empire built on money laundering and trafficking. The new and old magicians must overcome their differences to work together on their most ambitious heist yet.",
       "rating": 6.5,
-      "vote_count": 1013,
-      "popularity": 58.0405,
+      "vote_count": 1018,
+      "popularity": 65.4556,
       "budget": 90000000,
       "revenue": 239845830,
       "countries": [
@@ -3500,8 +3500,8 @@
         "Dennis Gansel"
       ],
       "writers": [
-        "Colin Teevan",
-        "Dennis Gansel"
+        "Dennis Gansel",
+        "Colin Teevan"
       ],
       "composers": [
         "Heiko Maile"
@@ -3552,8 +3552,8 @@
         }
       ],
       "overview": "A German Tiger tank crew is sent on a dangerous mission to rescue the missing officer Paul von Hardenburg from a top-secret bunker behind enemy lines. As they make their way through the lethal no-man's land, they must confront not only the enemy, but also their own fears and inner demons. Fueled by the Wehrmacht's methamphetamine, their mission increasingly becomes a journey into the heart of darkness.",
-      "rating": 7.0,
-      "vote_count": 310,
+      "rating": 7.1,
+      "vote_count": 314,
       "popularity": 55.776,
       "budget": 0,
       "revenue": 0,
@@ -3714,8 +3714,8 @@
         }
       ],
       "overview": "In a future shaped by war, AI, and fractured timelines, five interconnected sci-fi stories explore humanity’s fight for connection, survival, and meaning across time and space.",
-      "rating": 4.8,
-      "vote_count": 8,
+      "rating": 4.9,
+      "vote_count": 9,
       "popularity": 54.9268,
       "budget": 0,
       "revenue": 0,
@@ -4559,7 +4559,7 @@
       "overview": "A brother and sister are terrorized by what seems to be their late-author mother's most sinister literary creation - The Calling Witch.",
       "rating": 6.1,
       "vote_count": 7,
-      "popularity": 48.7497,
+      "popularity": 52.8937,
       "budget": 0,
       "revenue": 0,
       "countries": [],
@@ -4656,8 +4656,8 @@
       ],
       "overview": "Five years after the events of Jurassic World Dominion, covert operations expert Zora Bennett is contracted to lead a skilled team on a top-secret mission to secure genetic material from the world's three most massive dinosaurs. When Zora's operation intersects with a civilian family whose boating expedition was capsized, they all find themselves stranded on an island where they come face-to-face with a sinister, shocking discovery that's been hidden from the world for decades.",
       "rating": 6.3,
-      "vote_count": 2942,
-      "popularity": 47.9813,
+      "vote_count": 2945,
+      "popularity": 48.8873,
       "budget": 180000000,
       "revenue": 869146189,
       "countries": [
@@ -4782,7 +4782,7 @@
       ],
       "overview": "Trying to leave their troubled lives behind, twin brothers return to their hometown to start again, only to discover that an even greater evil is waiting to welcome them back.",
       "rating": 7.5,
-      "vote_count": 3594,
+      "vote_count": 3599,
       "popularity": 47.6811,
       "budget": 90000000,
       "revenue": 368389632,
@@ -4894,8 +4894,8 @@
       ],
       "overview": "Washed-up revolutionary Bob exists in a state of stoned paranoia, surviving off-grid with his spirited, self-reliant daughter, Willa. When his evil nemesis resurfaces after 16 years and she goes missing, the former radical scrambles to find her, father and daughter both battling the consequences of his past.",
       "rating": 7.4,
-      "vote_count": 2724,
-      "popularity": 47.6118,
+      "vote_count": 2731,
+      "popularity": 51.5505,
       "budget": 175000000,
       "revenue": 206311045,
       "countries": [
@@ -5007,7 +5007,7 @@
       "overview": "One year since the supernatural nightmare at Freddy Fazbear's Pizza, the stories about what transpired there have been twisted into a campy local legend, inspiring the town's first ever Fazfest. With the truth kept from her, Abby sneaks out to reconnect with Freddy, Bonnie, Chica, and Foxy, setting into motion a terrifying series of events that will reveal dark secrets about the real origin of Freddy's, and unleash a decades-hidden horror.",
       "rating": 6.7,
       "vote_count": 707,
-      "popularity": 45.026,
+      "popularity": 48.2032,
       "budget": 36000000,
       "revenue": 239309958,
       "countries": [
@@ -5241,7 +5241,7 @@
       ],
       "overview": "The adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations on human space travel and conquer the vast distances involved in an interstellar voyage.",
       "rating": 8.5,
-      "vote_count": 38801,
+      "vote_count": 38806,
       "popularity": 43.3458,
       "budget": 165000000,
       "revenue": 746606706,
@@ -5346,7 +5346,7 @@
       ],
       "overview": "Dr. Victor Frankenstein, a brilliant but egotistical scientist, brings a creature to life in a monstrous experiment that ultimately leads to the undoing of both the creator and his tragic creation.",
       "rating": 7.7,
-      "vote_count": 2854,
+      "vote_count": 2861,
       "popularity": 42.8893,
       "budget": 120000000,
       "revenue": 480678,
@@ -5443,8 +5443,8 @@
         }
       ],
       "overview": "Five years ago, a tear in the fabric of reality brought creatures to our world from an alternate dimension bent on our destruction. A father hides his daughter on an island to keep her safe while he prepares her for survival and the battles to come. But when the world is about to break, no place is safe.",
-      "rating": 6.2,
-      "vote_count": 69,
+      "rating": 6.1,
+      "vote_count": 70,
       "popularity": 42.8481,
       "budget": 0,
       "revenue": 0,
@@ -5653,8 +5653,8 @@
       ],
       "overview": "An idealistic young politician juggles familial issues and a challenging work life while preparing to take over the job of her mentor, the state’s longtime incumbent governor.",
       "rating": 5.7,
-      "vote_count": 50,
-      "popularity": 42.0637,
+      "vote_count": 52,
+      "popularity": 40.1719,
       "budget": 35000000,
       "revenue": 4546837,
       "countries": [
@@ -5777,7 +5777,7 @@
       ],
       "overview": "Ethan Hunt and team continue their search for the terrifying AI known as the Entity — which has infiltrated intelligence networks all over the globe — with the world's governments and a mysterious ghost from Hunt's past on their trail. Joined by new allies and armed with the means to shut the Entity down for good, Hunt is in a race against time to prevent the world as we know it from changing forever.",
       "rating": 7.2,
-      "vote_count": 2511,
+      "vote_count": 2513,
       "popularity": 40.8594,
       "budget": 400000000,
       "revenue": 598767057,
@@ -6220,7 +6220,7 @@
       ],
       "overview": "John Garrity, his estranged wife and their young son embark on a perilous journey to find sanctuary as a planet-killing comet hurtles toward Earth. Amid terrifying accounts of cities getting levelled, the Garritys experience the best and worst in humanity. As the countdown to the global apocalypse approaches zero, their incredible trek culminates in a desperate and last-minute flight to a possible safe haven.",
       "rating": 7.1,
-      "vote_count": 5035,
+      "vote_count": 5037,
       "popularity": 39.9494,
       "budget": 34000000,
       "revenue": 52300000,
@@ -6353,7 +6353,7 @@
       ],
       "overview": "Determined to prove herself, Officer Judy Hopps, the first bunny on Zootopia's police force, jumps at the chance to crack her first case - even if it means partnering with scam-artist fox Nick Wilde to solve the mystery.",
       "rating": 7.8,
-      "vote_count": 17621,
+      "vote_count": 17625,
       "popularity": 39.2622,
       "budget": 150000000,
       "revenue": 1025521689,
@@ -6561,8 +6561,8 @@
       ],
       "overview": "In the near future, a detective stands on trial accused of murdering his wife. He has ninety minutes to prove his innocence to the advanced AI Judge he once championed, before it determines his fate.",
       "rating": 6.7,
-      "vote_count": 111,
-      "popularity": 38.6642,
+      "vote_count": 115,
+      "popularity": 40.9913,
       "budget": 60000000,
       "revenue": 42091432,
       "countries": [
@@ -6682,7 +6682,7 @@
       ],
       "overview": "In the 22nd century, a paraplegic Marine is dispatched to the moon Pandora on a unique mission, but becomes torn between following orders and protecting an alien civilization.",
       "rating": 7.6,
-      "vote_count": 33399,
+      "vote_count": 33401,
       "popularity": 38.4307,
       "budget": 237000000,
       "revenue": 2923706026,
@@ -7446,8 +7446,8 @@
       ],
       "overview": "After a catastrophic military disaster, the dead don't just rise—they hunt. The military insists they are harmless and slow-moving, offering hope to grieving families. But when Ava enters a quarantine zone searching for her missing husband, she uncovers the horrifying truth: the undead are growing more violent, more relentless, and more dangerous with every passing hour.",
       "rating": 6.1,
-      "vote_count": 49,
-      "popularity": 35.9909,
+      "vote_count": 51,
+      "popularity": 37.7859,
       "budget": 0,
       "revenue": 3745163,
       "countries": [
@@ -7948,7 +7948,7 @@
       "overview": "Three compelling stories in one erotic experience. Yen Durano plays three different women in three titillating stories. In a collaboration of three directors: Roman Perez, Jr., Sigrid Polon, and Omar Deroca.",
       "rating": 3.2,
       "vote_count": 5,
-      "popularity": 34.4899,
+      "popularity": 34.4124,
       "budget": 0,
       "revenue": 0,
       "countries": [
@@ -8035,7 +8035,7 @@
       "overview": "Darken is set in a bizarre, mysterious, and violent unknown world with danger and death around every corner. After a young woman is accosted by a dying warrior in the middle of the street, a bizarre incantation propels her into the realm of Darken - a violent prison-like world of labyrinthine rooms, interconnected with no apparent rhyme or reason and no way of escape. As she fights for survival within this brutal place, she finds allies who are rebelling against the rule of a self-appointed religious despot who demands allegiance to an all-powerful god called \"Mother Darken.\" Eve and her allies must fight with everything they have if they are to have any hope of surviving the horrors Darken has in store for them.",
       "rating": 5.8,
       "vote_count": 6,
-      "popularity": 34.3659,
+      "popularity": 30.8665,
       "budget": 0,
       "revenue": 0,
       "countries": [
@@ -8141,7 +8141,7 @@
       ],
       "overview": "Against the vibrant backdrop of a 1960s-inspired, retro-futuristic world, Marvel's First Family is forced to balance their roles as heroes with the strength of their family bond, while defending Earth from a ravenous space god called Galactus and his enigmatic Herald, Silver Surfer.",
       "rating": 7.0,
-      "vote_count": 2945,
+      "vote_count": 2949,
       "popularity": 34.2262,
       "budget": 200000000,
       "revenue": 521858728,
@@ -8156,7 +8156,7 @@
         "Marvel Studios",
         "Kevin Feige Productions"
       ],
-      "poster_path": "/abqOz6EL3yXyOOafCPZxjL1M5bQ.jpg",
+      "poster_path": "/nf5qaSEvyYSNeFH0YhSs5EsBLX9.jpg",
       "backdrop_path": "/s94NjfKkcSczZ1FembwmQZwsuwY.jpg",
       "embedding_text": "The Fantastic 4: First Steps (2025). Welcome to the family. Against the vibrant backdrop of a 1960s-inspired, retro-futuristic world, Marvel's First Family is forced to balance their roles as heroes with the strength of their family bond, while defending Earth from a ravenous space god called Galactus and his enigmatic Herald, Silver Surfer. Genres: Science Fiction, Adventure, Action. Keywords: strong woman, superhero, based on comic, end of the world, family, super power, superhero team, alternative reality, aftercreditsstinger, duringcreditsstinger, marvel cinematic universe (mcu), 1960s, retrofuturism, awestruck, commanding. Directed by Matt Shakman. Starring Pedro Pascal as Reed Richards / Mister Fantastic, Vanessa Kirby as Sue Storm / Invisible Woman, Ebon Moss-Bachrach as Ben Grimm / The Thing, Joseph Quinn as Johnny Storm / Human Torch, Ralph Ineson as Galactus. Rated PG-13. Produced in United States of America."
     },
@@ -8251,7 +8251,7 @@
       ],
       "overview": "Set more than a decade after the events of the first film, learn the story of the Sully family (Jake, Neytiri, and their kids), the trouble that follows them, the lengths they go to keep each other safe, the battles they fight to stay alive, and the tragedies they endure.",
       "rating": 7.6,
-      "vote_count": 13648,
+      "vote_count": 13651,
       "popularity": 33.9127,
       "budget": 350000000,
       "revenue": 2353096253,
@@ -8371,7 +8371,7 @@
       ],
       "overview": "Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family. When organized crime family patriarch, Vito Corleone barely survives an attempt on his life, his youngest son, Michael steps in to take care of the would-be killers, launching a campaign of bloody revenge.",
       "rating": 8.7,
-      "vote_count": 22415,
+      "vote_count": 22416,
       "popularity": 33.5166,
       "budget": 6000000,
       "revenue": 245066411,
@@ -9066,8 +9066,8 @@
       ],
       "overview": "Desperate to save his sick daughter, working-class Ben Richards is convinced by The Running Man's charming but ruthless producer to enter the deadly competition game as a last resort. But Ben's defiance, instincts, and grit turn him into an unexpected fan favorite — and a threat to the entire system. As ratings skyrocket, so does the danger, and Ben must outwit not just the Hunters, but a nation addicted to watching him fall.",
       "rating": 6.8,
-      "vote_count": 1116,
-      "popularity": 32.6549,
+      "vote_count": 1120,
+      "popularity": 34.5258,
       "budget": 110000000,
       "revenue": 68615641,
       "countries": [
@@ -9454,8 +9454,8 @@
       ],
       "overview": "A man trapped in an endless sterile subway passageway sets out to find Exit 8. The rules of his quest are simple: do not overlook anything out of the ordinary. If you discover an anomaly, turn back immediately. If you don’t, carry on. Then leave from Exit 8. But even a single oversight will send him back to the beginning. Will he ever reach his goal and escape this infinite corridor?",
       "rating": 6.3,
-      "vote_count": 144,
-      "popularity": 31.7618,
+      "vote_count": 147,
+      "popularity": 42.1357,
       "budget": 0,
       "revenue": 39003150,
       "countries": [
@@ -9986,7 +9986,7 @@
       ],
       "overview": "Cobb, a skilled thief who commits corporate espionage by infiltrating the subconscious of his targets is offered a chance to regain his old life as payment for a task considered to be impossible: \"inception\", the implantation of another person's idea into a target's subconscious.",
       "rating": 8.4,
-      "vote_count": 38627,
+      "vote_count": 38632,
       "popularity": 29.789,
       "budget": 160000000,
       "revenue": 839030630,
@@ -10190,8 +10190,8 @@
         }
       ],
       "overview": "When James receives a mysterious letter from his lost love Mary, he is drawn to Silent Hill—a once-familiar town now consumed by darkness. As he searches for her, James faces monstrous creatures and unravels a terrifying truth that will push him to the edge of his sanity.",
-      "rating": 5.1,
-      "vote_count": 94,
+      "rating": 5.2,
+      "vote_count": 101,
       "popularity": 29.1968,
       "budget": 23000000,
       "revenue": 19300000,
@@ -10410,9 +10410,9 @@
         }
       ],
       "overview": "After being laid off and humiliated by a ruthless job market, a veteran paper mill manager descends into violence in a desperate bid to reclaim his dignity.",
-      "rating": 7.7,
-      "vote_count": 587,
-      "popularity": 28.8491,
+      "rating": 7.6,
+      "vote_count": 591,
+      "popularity": 30.2553,
       "budget": 12200000,
       "revenue": 30098000,
       "countries": [
@@ -10428,7 +10428,7 @@
         "Moho Film",
         "KG Productions"
       ],
-      "poster_path": "/sBpxTGLzKnvPSVtL5yQYpSxvKEb.jpg",
+      "poster_path": "/m9vMKZObkQPzc9OmIi2QNqSC0MR.jpg",
       "backdrop_path": "/s6aB9kjxNg0mu2361IkCUSpyHJV.jpg",
       "embedding_text": "No Other Choice (2025). Would you kill for a job? After being laid off and humiliated by a ruthless job market, a veteran paper mill manager descends into violence in a desperate bid to reclaim his dignity. Genres: Crime, Thriller, Comedy. Keywords: based on novel or book, remake, blunt, unemployment, paper industry, unemployed, devoted family man, hilarious, defiant, horrified, black comedy. Directed by Park Chan-wook. Starring Lee Byung-hun as Yoo Man-su, Son Ye-jin as Lee Mi-ri, Park Hee-soon as Choi Seon-chul, Lee Sung-min as Gu Bum-mo, Yeom Hye-ran as Lee A-ra. Rated R. Produced in South Korea, France."
     },
@@ -10532,7 +10532,7 @@
       ],
       "overview": "In the continuing saga of the Corleone crime family, a young Vito Corleone grows up in Sicily and in 1910s New York. In the 1950s, Michael Corleone attempts to expand the family business into Las Vegas, Hollywood and Cuba.",
       "rating": 8.6,
-      "vote_count": 13562,
+      "vote_count": 13563,
       "popularity": 19.9734,
       "budget": 13000000,
       "revenue": 102600000,
@@ -10767,7 +10767,7 @@
       ],
       "overview": "The defense and the prosecution have rested and the jury is filing into the jury room to decide if a young Spanish-American is guilty or innocent of murdering his father. What begins as an open and shut case soon becomes a mini-drama of each of the jurors' prejudices and preconceptions about the trial, the accused, and each other.",
       "rating": 8.6,
-      "vote_count": 9719,
+      "vote_count": 9722,
       "popularity": 12.1441,
       "budget": 397751,
       "revenue": 4360000,
@@ -10869,7 +10869,7 @@
       ],
       "overview": "A young girl, Chihiro, becomes trapped in a strange new world of spirits. When her parents undergo a mysterious transformation, she must call upon the courage she never knew she had to free her family.",
       "rating": 8.5,
-      "vote_count": 17919,
+      "vote_count": 17921,
       "popularity": 17.4522,
       "budget": 19000000,
       "revenue": 274925095,
@@ -11506,8 +11506,8 @@
         "Quentin Tarantino"
       ],
       "writers": [
-        "Roger Avary",
         "Quentin Tarantino",
+        "Roger Avary",
         "Quentin Tarantino"
       ],
       "composers": [],
@@ -11558,7 +11558,7 @@
       ],
       "overview": "A burger-loving hit man, his philosophical partner, a drug-addled gangster's moll and a washed-up boxer converge in this sprawling, comedic crime caper. Their adventures unfurl in three stories that ingeniously trip back and forth in time.",
       "rating": 8.5,
-      "vote_count": 29639,
+      "vote_count": 29644,
       "popularity": 21.1799,
       "budget": 8000000,
       "revenue": 213928762,
@@ -12382,7 +12382,7 @@
       "overview": "A touching story of an Italian book seller of Jewish ancestry who lives in his own little fairy tale. His creative and happy life would come to an abrupt halt when his entire family is deported to a concentration camp during World War II. While locked up he tries to convince his son that the whole thing is just a game.",
       "rating": 8.4,
       "vote_count": 13773,
-      "popularity": 9.6472,
+      "popularity": 12.5479,
       "budget": 20000000,
       "revenue": 230098753,
       "countries": [
@@ -12705,7 +12705,7 @@
       ],
       "overview": "In the poverty-stricken favelas of Rio de Janeiro in the 1970s, two young men choose different paths. Rocket is a budding photographer who documents the increasing drug-related violence of his neighborhood, while José “Zé” Pequeno is an ambitious drug dealer diving into a dangerous life of crime.",
       "rating": 8.4,
-      "vote_count": 7983,
+      "vote_count": 7984,
       "popularity": 8.4958,
       "budget": 3300000,
       "revenue": 30641770,
@@ -13585,7 +13585,7 @@
       "overview": "An intriguing and sinful exploration of seduction, forbidden love, and redemption, Gabriel's Inferno is a captivating and wildly passionate tale of one man's escape from his own personal hell as he tries to earn the impossible--forgiveness and love.",
       "rating": 8.4,
       "vote_count": 2441,
-      "popularity": 3.3625,
+      "popularity": 3.363,
       "budget": 0,
       "revenue": 0,
       "countries": [
@@ -13681,7 +13681,7 @@
       ],
       "overview": "Struggling to find his place in the world while juggling school and family, Brooklyn teenager Miles Morales is unexpectedly bitten by a radioactive spider and develops unfathomable powers just like the one and only Spider-Man. While wrestling with the implications of his new abilities, Miles discovers a super collider created by the madman Wilson \"Kingpin\" Fisk, causing others from across the Spider-Verse to be inadvertently transported to his dimension.",
       "rating": 8.4,
-      "vote_count": 16837,
+      "vote_count": 16838,
       "popularity": 18.8303,
       "budget": 90000000,
       "revenue": 393602435,
@@ -14365,7 +14365,7 @@
       ],
       "overview": "Two homicide detectives are on a desperate hunt for a serial killer whose crimes are based on the \"seven deadly sins\" in this dark and haunting film that takes viewers from the tortured remains of one victim to the next. The seasoned Det. Somerset researches each sin in an effort to get inside the killer's mind, while his novice partner, Mills, scoffs at his efforts to unravel the case.",
       "rating": 8.4,
-      "vote_count": 22567,
+      "vote_count": 22571,
       "popularity": 17.0563,
       "budget": 33000000,
       "revenue": 327311859,
@@ -14483,7 +14483,7 @@
       ],
       "overview": "The true story of pianist Władysław Szpilman's experiences in Warsaw during the Nazi occupation. When the Jews of the city find themselves forced into a ghetto, Szpilman finds work playing in a café; and when his family is deported in 1942, he stays behind, works for a while as a laborer, and eventually goes into hiding in the ruins of the war-torn city.",
       "rating": 8.4,
-      "vote_count": 9890,
+      "vote_count": 9893,
       "popularity": 10.7006,
       "budget": 35000000,
       "revenue": 120098945,
@@ -15299,7 +15299,7 @@
       ],
       "overview": "Clarice Starling is a top student at the FBI's training academy.  Jack Crawford wants Clarice to interview Dr. Hannibal Lecter, a brilliant psychiatrist who is also a violent psychopath, serving life behind bars for various acts of murder and cannibalism.  Crawford believes that Lecter may have insight into a case and that Starling, as an attractive young woman, may be just the bait to draw him out.",
       "rating": 8.3,
-      "vote_count": 17539,
+      "vote_count": 17540,
       "popularity": 3.7828,
       "budget": 19000000,
       "revenue": 272742922,
@@ -15370,14 +15370,14 @@
         "absurd"
       ],
       "directors": [
-        "Justin K. Thompson",
         "Kemp Powers",
+        "Justin K. Thompson",
         "Joaquim Dos Santos"
       ],
       "writers": [
-        "David Callaham",
         "Phil Lord",
-        "Christopher Miller"
+        "Christopher Miller",
+        "David Callaham"
       ],
       "composers": [
         "Daniel Pemberton"
@@ -15428,7 +15428,7 @@
       "overview": "After reuniting with Gwen Stacy, Brooklyn’s full-time, friendly neighborhood Spider-Man is catapulted across the Multiverse, where he encounters the Spider Society, a team of Spider-People charged with protecting the Multiverse's very existence. But when the heroes clash on how to handle a new threat, Miles finds himself pitted against the other Spiders and must set out on his own to save those he loves most.",
       "rating": 8.3,
       "vote_count": 8234,
-      "popularity": 25.9947,
+      "popularity": 30.3269,
       "budget": 100000000,
       "revenue": 690897910,
       "countries": [
@@ -15450,7 +15450,7 @@
       ],
       "poster_path": "/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
       "backdrop_path": "/9xfDWXAUbFXQK585JvByT5pEAhe.jpg",
-      "embedding_text": "Spider-Man: Across the Spider-Verse (2023). It's how you wear the mask that matters. After reuniting with Gwen Stacy, Brooklyn’s full-time, friendly neighborhood Spider-Man is catapulted across the Multiverse, where he encounters the Spider Society, a team of Spider-People charged with protecting the Multiverse's very existence. But when the heroes clash on how to handle a new threat, Miles finds himself pitted against the other Spiders and must set out on his own to save those he loves most. Genres: Animation, Action, Adventure, Science Fiction. Keywords: new york city, hero, sacrifice, secret identity, superhero, villain, portal, based on comic, sequel, romance, alter ego, alternate dimension, parenting, family, alternate version, super power, brooklyn, new york city, superhero team, spider bite, super villain, cliffhanger, masked superhero, teenage romance, young heroes, teen superhero, teen social issues, chelsea, alternate universe, superhero teamup, female superhero, slow burn romance, interdimensional travel, absurd. Directed by Justin K. Thompson, Kemp Powers, Joaquim Dos Santos. Starring Shameik Moore as Miles Morales (voice), Hailee Steinfeld as Gwen Stacy (voice), Brian Tyree Henry as Jeff Morales (voice), Luna Lauren Vélez as Rio Morales (voice), Jake Johnson as Peter B. Parker (voice). Rated PG. Produced in United States of America."
+      "embedding_text": "Spider-Man: Across the Spider-Verse (2023). It's how you wear the mask that matters. After reuniting with Gwen Stacy, Brooklyn’s full-time, friendly neighborhood Spider-Man is catapulted across the Multiverse, where he encounters the Spider Society, a team of Spider-People charged with protecting the Multiverse's very existence. But when the heroes clash on how to handle a new threat, Miles finds himself pitted against the other Spiders and must set out on his own to save those he loves most. Genres: Animation, Action, Adventure, Science Fiction. Keywords: new york city, hero, sacrifice, secret identity, superhero, villain, portal, based on comic, sequel, romance, alter ego, alternate dimension, parenting, family, alternate version, super power, brooklyn, new york city, superhero team, spider bite, super villain, cliffhanger, masked superhero, teenage romance, young heroes, teen superhero, teen social issues, chelsea, alternate universe, superhero teamup, female superhero, slow burn romance, interdimensional travel, absurd. Directed by Kemp Powers, Justin K. Thompson, Joaquim Dos Santos. Starring Shameik Moore as Miles Morales (voice), Hailee Steinfeld as Gwen Stacy (voice), Brian Tyree Henry as Jeff Morales (voice), Luna Lauren Vélez as Rio Morales (voice), Jake Johnson as Peter B. Parker (voice). Rated PG. Produced in United States of America."
     },
     {
       "tmdb_id": 73,
@@ -15661,7 +15661,7 @@
       ],
       "overview": "Eighties teenager Marty McFly is accidentally sent back in time to 1955, inadvertently disrupting his parents' first meeting and attracting his mother's romantic interest. Marty must repair the damage to history by rekindling his parents' romance and - with the help of his eccentric inventor friend Doc Brown - return to 1985.",
       "rating": 8.3,
-      "vote_count": 21352,
+      "vote_count": 21357,
       "popularity": 18.1428,
       "budget": 19000000,
       "revenue": 381109762,
@@ -16737,7 +16737,7 @@
       "overview": "A boy experiences first love, friendships and injustices growing up in 1960s Taiwan.",
       "rating": 8.3,
       "vote_count": 371,
-      "popularity": 3.1578,
+      "popularity": 3.1792,
       "budget": 0,
       "revenue": 0,
       "countries": [
@@ -17331,8 +17331,8 @@
         "Charlie Chaplin"
       ],
       "cinematographers": [
-        "Roland Totheroh",
         "Ira H. Morgan",
+        "Roland Totheroh",
         "Bud Thackery"
       ],
       "cast": [
@@ -17588,8 +17588,8 @@
       ],
       "overview": "With dreams of diving abroad, Tsuneo gets a job assisting Josee, an artist whose imagination takes her far beyond her wheelchair. But when the tide turns against them, they push each other to places they never thought possible, and inspire a love fit for a storybook.",
       "rating": 8.3,
-      "vote_count": 562,
-      "popularity": 3.4831,
+      "vote_count": 563,
+      "popularity": 4.3132,
       "budget": 0,
       "revenue": 0,
       "countries": [
@@ -18526,16 +18526,16 @@
         "Charlie Chaplin"
       ],
       "writers": [
-        "Charlie Chaplin",
         "Harry Crocker",
+        "Charlie Chaplin",
         "Harry Carr"
       ],
       "composers": [
         "Charlie Chaplin"
       ],
       "cinematographers": [
-        "Gordon Pollock",
-        "Roland Totheroh"
+        "Roland Totheroh",
+        "Gordon Pollock"
       ],
       "cast": [
         {
@@ -18582,7 +18582,7 @@
       "overview": "A tramp falls in love with a beautiful blind flower girl. His on-and-off friendship with a wealthy man allows him to be the girl's benefactor and suitor.",
       "rating": 8.3,
       "vote_count": 2388,
-      "popularity": 3.2501,
+      "popularity": 4.2144,
       "budget": 1500000,
       "revenue": 4250000,
       "countries": [
@@ -18645,9 +18645,9 @@
         "Rob Minkoff"
       ],
       "writers": [
+        "Jonathan Roberts",
         "Linda Woolverton",
-        "Irene Mecchi",
-        "Jonathan Roberts"
+        "Irene Mecchi"
       ],
       "composers": [
         "Hans Zimmer"
@@ -18697,7 +18697,7 @@
       ],
       "overview": "Young lion prince Simba, eager to one day become king of the Pride Lands, grows up under the watchful eye of his father Mufasa; all the while his villainous uncle Scar conspires to take the throne for himself. Amid betrayal and tragedy, Simba must confront his past and find his rightful place in the Circle of Life.",
       "rating": 8.3,
-      "vote_count": 19350,
+      "vote_count": 19351,
       "popularity": 19.8904,
       "budget": 45000000,
       "revenue": 763455561,
@@ -18792,8 +18792,8 @@
       ],
       "overview": "Separated from his daughter, a father with an intellectual disability must prove his innocence when he is jailed for the death of a commander's child.",
       "rating": 8.3,
-      "vote_count": 4512,
-      "popularity": 4.8258,
+      "vote_count": 4513,
+      "popularity": 5.2215,
       "budget": 0,
       "revenue": 28000000,
       "countries": [
@@ -18898,7 +18898,7 @@
       "overview": "Four prison inmates have been hatching a plan to literally dig out of jail when another prisoner, Claude Gaspard, is moved into their cell. They take a risk and share their plan with the newcomer. Over the course of three days, the prisoners and friends break through the concrete floor using a bed post and begin to make their way through the sewer system – yet their escape is anything but assured.",
       "rating": 8.3,
       "vote_count": 541,
-      "popularity": 2.4144,
+      "popularity": 2.7037,
       "budget": 0,
       "revenue": 33187,
       "countries": [
@@ -19473,7 +19473,7 @@
       "overview": "Taylor Swift takes the stage in Dallas for the Reputation Stadium Tour and celebrates a monumental night of music, memories and visual magic.",
       "rating": 8.2,
       "vote_count": 420,
-      "popularity": 1.4417,
+      "popularity": 1.6995,
       "budget": 0,
       "revenue": 0,
       "countries": [
@@ -19509,8 +19509,8 @@
         "Mitja Okorn"
       ],
       "writers": [
-        "Jeffrey Addiss",
-        "Will Matthews"
+        "Will Matthews",
+        "Jeffrey Addiss"
       ],
       "composers": [
         "Photek"
@@ -19641,8 +19641,8 @@
         "Park Chan-wook"
       ],
       "writers": [
-        "Hwang Jo-yoon",
         "Lim Joon-hyung",
+        "Hwang Jo-yoon",
         "Park Chan-wook"
       ],
       "composers": [
@@ -20086,13 +20086,13 @@
         "cosmic"
       ],
       "directors": [
-        "Anthony Russo",
-        "Joe Russo"
+        "Joe Russo",
+        "Anthony Russo"
       ],
       "writers": [
         "Joe Simon",
-        "Jack Kirby",
-        "Steve Englehart"
+        "Bill Mantlo",
+        "Jack Kirby"
       ],
       "composers": [
         "Alan Silvestri"
@@ -20144,7 +20144,7 @@
       ],
       "overview": "As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.",
       "rating": 8.2,
-      "vote_count": 31431,
+      "vote_count": 31433,
       "popularity": 27.9458,
       "budget": 300000000,
       "revenue": 2052415039,
@@ -20160,7 +20160,7 @@
       ],
       "poster_path": "/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg",
       "backdrop_path": "/mDfJG3LC3Dqb67AZ52x3Z0jU0uB.jpg",
-      "embedding_text": "Avengers: Infinity War (2018). Destiny arrives all the same. As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain. Genres: Adventure, Action, Science Fiction. Keywords: sacrifice, magic, superhero, based on comic, space, battlefield, genocide, magical object, super power, superhero team, aftercreditsstinger, marvel cinematic universe (mcu), cosmic. Directed by Anthony Russo, Joe Russo. Starring Robert Downey Jr. as Tony Stark / Iron Man, Chris Evans as Steve Rogers / Captain America, Chris Hemsworth as Thor, Josh Brolin as Thanos, Mark Ruffalo as Bruce Banner / Hulk. Rated PG-13. Produced in United States of America."
+      "embedding_text": "Avengers: Infinity War (2018). Destiny arrives all the same. As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain. Genres: Adventure, Action, Science Fiction. Keywords: sacrifice, magic, superhero, based on comic, space, battlefield, genocide, magical object, super power, superhero team, aftercreditsstinger, marvel cinematic universe (mcu), cosmic. Directed by Joe Russo, Anthony Russo. Starring Robert Downey Jr. as Tony Stark / Iron Man, Chris Evans as Steve Rogers / Captain America, Chris Hemsworth as Thor, Josh Brolin as Thanos, Mark Ruffalo as Bruce Banner / Hulk. Rated PG-13. Produced in United States of America."
     },
     {
       "tmdb_id": 1186532,
@@ -20414,8 +20414,8 @@
         "Peter Farrelly"
       ],
       "writers": [
-        "Brian Hayes Currie",
         "Nick Vallelonga",
+        "Brian Hayes Currie",
         "Peter Farrelly"
       ],
       "composers": [
@@ -20468,7 +20468,7 @@
       ],
       "overview": "Tony Lip, a bouncer in 1962, is hired to drive pianist Don Shirley on a tour through the Deep South in the days when African Americans, forced to find alternate accommodations and services due to segregation laws below the Mason-Dixon Line, relied on a guide called The Negro Motorist Green Book.",
       "rating": 8.2,
-      "vote_count": 12561,
+      "vote_count": 12562,
       "popularity": 9.6045,
       "budget": 23000000,
       "revenue": 321752656,

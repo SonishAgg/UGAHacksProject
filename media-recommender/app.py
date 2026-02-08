@@ -13,7 +13,7 @@ st.set_page_config(page_title="Media Tag Search", layout="wide")
 # Put these in .streamlit/secrets.toml
 # TMDB_API_KEY = "..."
 # JIKAN_BASE_URL = "https://api.jikan.moe/v4"   # optional override
-TMDB_API_KEY = st.secrets.get("TMDB_API_KEY")
+TMDB_API_KEY = st.secrets.get("24859a61465a5fcdca16003e3c27b9ef")
 JIKAN_BASE_URL = st.secrets.get("JIKAN_BASE_URL", "https://api.jikan.moe/v4")
 
 if not TMDB_API_KEY:

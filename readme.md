@@ -34,6 +34,10 @@ Planned improvements include music recommendations, user personalization, additi
 
 This project was built at UGA Hacks 11. It is powered by TMDB, AniList, Sentence-Transformers, and Streamlit. 
 
+## Team-Members
+
+Sonish Aggarwal, Ryder Tobin, Mason Guerra, Berk Kurt 
+
 
 
 
